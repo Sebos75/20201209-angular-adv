@@ -1,0 +1,30 @@
+{
+  "auctions": [
+    {
+      "id": 1,
+      "title": "Super smartfon",
+      "price": 2000,
+      "imgUrl": "https://picsum.photos/id/3/200/200",
+      "description": "Używany ale flagowiec..."
+    },
+    {
+      "id": 2,
+      "title": "Części do aparatu",
+      "price": 3000,
+      "imgUrl": "https://picsum.photos/id/36/200/200"
+    },
+    {
+      "id": 3,
+      "title": "Czas na herbatę?",
+      "price": 30,
+      "imgUrl": "https://picsum.photos/id/326/200/200",
+      "description": "Nowe smaki i aromaty."
+    },
+    {
+      "id": 4,
+      "title": "Zabytkowe wozy",
+      "price": 11000,
+      "imgUrl": "https://picsum.photos/id/133/200/200"
+    }
+  ]
+}
