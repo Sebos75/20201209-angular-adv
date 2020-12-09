@@ -22,6 +22,9 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     CommonModule,
     AuctionRoutingModule,
     SharedModule
+  ],
+  providers: [
+    // AuctionService
   ]
 })
 export class AuctionModule { }

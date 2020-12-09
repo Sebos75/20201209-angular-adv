@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,8 @@ import {
   faImage,
   faPlus,
   faShoppingBasket, faTag,
-  faUser
+  faUser,
+  faSync
 } from '@fortawesome/free-solid-svg-icons';
 // import { HighlightDirective } from './advice/highlight.directive';
 import { AdviceModule } from './advice/advice.module';
@@ -33,7 +35,8 @@ import { SharedModule } from './shared/shared.module';
     FontAwesomeModule,
     AdviceModule,
     AuctionModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   // exports: [HighlightDirective],
@@ -41,6 +44,6 @@ import { SharedModule } from './shared/shared.module';
 })
 export class AppModule {
   constructor(faIconLibrary: FaIconLibrary) {
-    faIconLibrary.addIcons(faUser, faCartPlus, faShoppingBasket, faTag, faPlus, faEdit, faImage, faGavel);
+    faIconLibrary.addIcons(faSync, faUser, faCartPlus, faShoppingBasket, faTag, faPlus, faEdit, faImage, faGavel);
   }
 }
