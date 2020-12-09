@@ -16,6 +16,8 @@ import {
   faUser
 } from '@fortawesome/free-solid-svg-icons';
 import { HighlightDirective } from './highlight.directive';
+import { AdviceModule } from './advice/advice.module';
+import { AuctionModule } from './auction/auction.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HighlightDirective } from './highlight.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AdviceModule,
+    AuctionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
