@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightDirective } from './highlight.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -8,8 +9,12 @@ import { HighlightDirective } from './highlight.directive';
     HighlightDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ],
-  exports: [HighlightDirective]
+  exports: [
+    HighlightDirective,
+    FontAwesomeModule
+  ]
 })
 export class SharedModule { }

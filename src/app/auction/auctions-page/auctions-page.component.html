@@ -1,1 +1,16 @@
-<p>auctions-page works!</p>
+<section>
+  <div class="my-3">
+    <h2>Lista naszych aukcji </h2>
+  </div>
+  <div class="row">
+      <div class="col-10 alert alert-info mx-auto" *ngIf="isLoading">
+        <fa-icon [spin]="true" icon="sync"></fa-icon> Poczekaj na aukcje...
+      </div>
+      <div class="col-10 alert alert-danger mx-auto" *ngIf="auctionsLoadingError">
+        {{ auctionsLoadingError }}
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2" *ngFor="let item of auctions">
+        <ap-auction-card [auction]="item"></ap-auction-card>
+      </div>
+  </div>
+</section>
