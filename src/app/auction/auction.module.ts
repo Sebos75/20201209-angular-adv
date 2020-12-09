@@ -6,6 +6,7 @@ import { AddAuctionPageComponent } from './add-auction-page/add-auction-page.com
 import { AuctionsPageComponent } from './auctions-page/auctions-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { PromotionsPageComponent } from './promotions-page/promotions-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PromotionsPageComponent } from './promotions-page/promotions-page.compo
   ],
   imports: [
     CommonModule,
-    AuctionRoutingModule
+    AuctionRoutingModule,
+    SharedModule
   ]
 })
 export class AuctionModule { }

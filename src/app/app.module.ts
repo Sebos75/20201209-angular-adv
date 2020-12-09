@@ -15,25 +15,28 @@ import {
   faShoppingBasket, faTag,
   faUser
 } from '@fortawesome/free-solid-svg-icons';
-import { HighlightDirective } from './highlight.directive';
+// import { HighlightDirective } from './advice/highlight.directive';
 import { AdviceModule } from './advice/advice.module';
 import { AuctionModule } from './auction/auction.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MainMenuComponent,
-    HighlightDirective
+    // HighlightDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     AdviceModule,
-    AuctionModule
+    AuctionModule,
+    SharedModule
   ],
   providers: [],
+  // exports: [HighlightDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule {

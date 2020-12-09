@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { AuctionItem } from '../../../src/app/auction-item';
+import { AuctionItem } from '../../../src/app/auction/auction-item';
 
 @Component({
   selector: 'ap-auction-card',
