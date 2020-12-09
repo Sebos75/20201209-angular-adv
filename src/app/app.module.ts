@@ -21,6 +21,9 @@ import {
 import { AdviceModule } from './advice/advice.module';
 import { AuctionModule } from './auction/auction.module';
 import { SharedModule } from './shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
+import { NgProgressModule } from 'ngx-progressbar';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,11 @@ import { SharedModule } from './shared/shared.module';
     AdviceModule,
     AuctionModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    NgProgressModule.withConfig({}),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center'
+     })
   ],
   providers: [],
   // exports: [HighlightDirective],

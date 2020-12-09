@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuctionItem } from '../auction-item';
 
@@ -21,7 +21,7 @@ export class AuctionsPageComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data: any) => {
+    this.route.data.subscribe((data: Data) => {
       this.auctions = data.auctions;
     });
   }
