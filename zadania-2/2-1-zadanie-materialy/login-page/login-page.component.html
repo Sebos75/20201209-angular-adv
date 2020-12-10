@@ -1,0 +1,51 @@
+<section>
+  <div class="my-3">
+    <h2>Logowanie użytkownika</h2>
+  </div>
+  <div class="mt-5 d-flex justify-content-center">
+    <form [formGroup]="credentialForm" (input)="handleCleanError()">
+      <div class="form-group">
+        <label for="email">Adres e-mail</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon icon="envelope"></fa-icon>
+          </span>
+          </div>
+          <input
+            id="email"
+            formControlName="email"
+            required
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Hasło dostępu</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon icon="key"></fa-icon>
+          </span>
+          </div>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            required
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger"> {{errorMessage}} </div>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-primary" type="button" (click)="handleLogIn()">
+          <fa-icon icon="sign-in-alt"></fa-icon> Zaloguj
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
