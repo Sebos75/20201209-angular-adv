@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../auth/user.service';
 
 import { MenuItem } from './menu-item';
@@ -10,27 +10,25 @@ import { MenuItem } from './menu-item';
   templateUrl: './main-menu.component.html',
   styles: []
 })
-export class MainMenuComponent implements OnInit, OnDestroy {
+export class MainMenuComponent implements OnInit {
 
-  isLoggedIn = false;
+  // isLoggedIn = false;
   isMenuShown = false;
   menuItems: MenuItem[] = [
     { link: '/auctions', title: 'Aukcje' },
     { link: '/promotions', title: 'Promocje' },
     { link: '/advices', title: 'Podpowiadamy' }
   ];
-  loginSub!: Subscription;
+  // loginSub!: Subscription; // async pipe załatwia sprawę
+  isLoggedIn$!: Observable<boolean>;
 
   constructor(private userService: UserService){}
 
-  ngOnDestroy(): void {
-    this.loginSub.unsubscribe();
-  }
-
   ngOnInit(): void {
-    this.loginSub = this.userService.isLoggedIn$().subscribe((loggedIn: boolean) => {
-      this.isLoggedIn = loggedIn;
-    });
+    // this.loginSub = this.userService.isLoggedIn$().subscribe((loggedIn: boolean) => {
+    //   this.isLoggedIn = loggedIn;
+    // });
+    this.isLoggedIn$ = this.userService.isLoggedIn$();
   }
 
   toggleMenu(): void {
