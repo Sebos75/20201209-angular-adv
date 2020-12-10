@@ -16,10 +16,10 @@
     <a class="btn btn-secondary ml-2" routerLink="/shopping-cart">
       <fa-icon icon="shopping-basket"></fa-icon> Koszyk
     </a>
-    <a class="btn btn-secondary ml-2" routerLink="/login">
+    <a class="btn btn-secondary ml-2" routerLink="/login" *ngIf="!isLoggedIn">
       <fa-icon icon="sign-in-alt"></fa-icon> Zaloguj
     </a>
-    <a class="btn btn-success ml-2" routerLink="/user">
+    <a class="btn btn-success ml-2" routerLink="/user" *ngIf="isLoggedIn">
       <fa-icon icon="user"></fa-icon> Użytkownik
     </a>
   </div>

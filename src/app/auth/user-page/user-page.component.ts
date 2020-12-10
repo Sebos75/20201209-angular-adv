@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'ap-user-page',
@@ -21,15 +25,28 @@ import { Component, OnInit } from '@angular/core';
     </section>
   `
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, OnDestroy {
 
   user = {name: 'Example', lastName: 'Placeholder'};
+  private unsubSubject = new Subject<void>();
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  ngOnDestroy(): void {
+    // HACK jak mamy dużo subskrypcji i każdą z nich chcemy natychmiast unsubować !
+    // w połączeniu z takeUntil(this.unsubSubject) niżej
+    this.unsubSubject.next();
+    this.unsubSubject.complete();
+  }
 
   ngOnInit(): void {
+    this.userService.getUser$().pipe(takeUntil(this.unsubSubject)).subscribe((user: User) => {
+        // console.log(user);
+        this.user = user;
+    });
   }
 
   handleUserLogOut(): void {
+    this.userService.logOut();
   }
 }

@@ -36,7 +36,7 @@ export class UserService {
   // private isLoggedIn = false;
   private baseURL = environment.authServerBaseURL;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   logIn(credentials: {email: string, password: string}): Observable<User> {
     // logIn(credentials: any): Observable<User> {
@@ -54,7 +54,9 @@ export class UserService {
                );
   }
 
-  // setUser() {}; // TO JEST OK.
+  // setInitialUser(): void {
+  //   this.userSubject.next({name: 'Jan', lastName: 'Nowak', token: '12'})
+  // } // TO JEST OK.
 
   // To jest złamanie zasady Single Source of Truth  !!! (każdy może zrobić .next() !!!!)
   // getUser(): BehaviorSubject<User> {
