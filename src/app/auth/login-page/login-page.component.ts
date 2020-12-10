@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -19,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   });
   errorMessage = '';
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +37,9 @@ export class LoginPageComponent implements OnInit {
       return;
     }
     const {email, password} = this.credentialForm.value;
+    this.userService.logIn({email, password}).subscribe((user: User) => {
+      console.log(user);
+    });
   }
 
 }

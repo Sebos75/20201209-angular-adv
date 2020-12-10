@@ -15,7 +15,8 @@ import {
   faPlus,
   faShoppingBasket, faTag,
   faUser,
-  faSync
+  faSync,
+  faEnvelope, faSignInAlt, faKey
 } from '@fortawesome/free-solid-svg-icons';
 // import { HighlightDirective } from './advice/highlight.directive';
 import { AdviceModule } from './advice/advice.module';
@@ -23,6 +24,7 @@ import { AuctionModule } from './auction/auction.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgProgressModule } from 'ngx-progressbar';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { NgProgressModule } from 'ngx-progressbar';
     NgProgressModule.withConfig({}),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center'
-     })
+     }),
+    AuthModule
   ],
   providers: [],
   // exports: [HighlightDirective],
@@ -51,6 +54,9 @@ import { NgProgressModule } from 'ngx-progressbar';
 })
 export class AppModule {
   constructor(faIconLibrary: FaIconLibrary) {
-    faIconLibrary.addIcons(faSync, faUser, faCartPlus, faShoppingBasket, faTag, faPlus, faEdit, faImage, faGavel);
+    // ? tslint disable line
+    faIconLibrary.addIcons(
+      faSync, faUser, faCartPlus, faShoppingBasket,
+      faTag, faPlus, faEdit, faImage, faGavel, faEnvelope, faSignInAlt, faKey);
   }
 }
