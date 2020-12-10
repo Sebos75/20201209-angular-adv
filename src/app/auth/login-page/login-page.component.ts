@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -18,13 +19,13 @@ import { UserService } from '../user.service';
 export class LoginPageComponent implements OnInit, OnDestroy {
 
   credentialForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    email: new FormControl('test', [Validators.required]),
+    password: new FormControl('432!', [Validators.required])
   });
   errorMessage = '';
   private loginSub!: Subscription;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {}
 
@@ -53,7 +54,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.unsubscribeLogInStream();
     this.loginSub = this.userService.logIn({email, password}).subscribe(
       (user: User) => {
-        console.log(user);
+        this.router.navigate(['']);
         // Route to other page...
       },
       (err: HttpErrorResponse) => {

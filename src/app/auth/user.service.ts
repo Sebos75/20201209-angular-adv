@@ -54,9 +54,29 @@ export class UserService {
                );
   }
 
-  // setInitialUser(): void {
-  //   this.userSubject.next({name: 'Jan', lastName: 'Nowak', token: '12'})
-  // } // TO JEST OK.
+  fetchUserDetails(): Observable<User> {
+
+    // Naiwne podejście:
+    // let token = '';
+    // this.userSubject.subscribe((user) => {
+    //   console.log('ODEBRALEM', user);
+    //   token = user.token;
+    // });
+
+    // const user = this.userSubject.getValue();
+    // user.token
+
+    const {token = ''} = this.userSubject.getValue();
+    return this.httpClient.get<User>(this.baseURL + 'user', {
+      headers: {
+        authorization: token
+      }
+    });
+  }
+
+  setInitialUser(): void {
+    this.userSubject.next({name: 'Jan', lastName: 'Nowak', token: '12'});
+  } // TO JEST OK.
 
   // To jest złamanie zasady Single Source of Truth  !!! (każdy może zrobić .next() !!!!)
   // getUser(): BehaviorSubject<User> {
