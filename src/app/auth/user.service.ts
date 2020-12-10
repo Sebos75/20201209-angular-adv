@@ -1,10 +1,26 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from './user';
 
 // type Credentials = {email: string, password: string};
+
+const DEFAULT_USER: User = {
+  name: '',
+  lastName: '',
+  token: ''
+};
+
+// FAKE showcase:
+// const myService = new UserService(null);
+
+// myService.getUser().next({
+//   name: 'TROLL',
+//   lastName: '',
+//   token: ''
+// });
 
 @Injectable({
   providedIn: 'root'
@@ -12,26 +28,46 @@ import { User } from './user';
 export class UserService {
   // Statefull
 
-  private user: User = {
-    name: '',
-    lastName: '',
-    token: ''
-  };
-  private isLoggedIn = false;
+  private userSubject = new BehaviorSubject<User>(DEFAULT_USER);
+  private user$ = this.userSubject.asObservable();
+  private loggedIn$: Observable<boolean> = this.user$.pipe(
+    map((user: User) => Boolean(user.token))
+  );
+  // private isLoggedIn = false;
   private baseURL = environment.authServerBaseURL;
 
   constructor(private httpClient: HttpClient) { }
 
   logIn(credentials: {email: string, password: string}): Observable<User> {
     // logIn(credentials: any): Observable<User> {
-    return this.httpClient.post<User>(this.baseURL + 'login', credentials);
+    return this.httpClient.post<User>(this.baseURL + 'login', credentials)
+               .pipe(
+                 tap((user: User) => {
+                    // USER zalogowany!
+                    this.userSubject.next(user);
+                 }),
+                 catchError((err: HttpErrorResponse) => {
+                    // USER Wylogowany !
+                    this.userSubject.next(DEFAULT_USER);
+                    return throwError(err);
+                 })
+               );
   }
 
-  loggedIn(): boolean {
-    return this.isLoggedIn;
+  // setUser() {}; // TO JEST OK.
+
+  // To jest złamanie zasady Single Source of Truth  !!! (każdy może zrobić .next() !!!!)
+  // getUser(): BehaviorSubject<User> {
+  getUser$(): Observable<User> {
+    return this.user$;
   }
 
+  isLoggedIn$(): Observable<boolean> {
+    return this.loggedIn$;
+  }
+
+  // ZAIMPLEMENTUJ !
   logOut(): void {
-    this.isLoggedIn = false;
+    this.userSubject.next(DEFAULT_USER);
   }
  }
