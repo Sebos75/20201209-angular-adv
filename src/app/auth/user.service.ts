@@ -55,23 +55,7 @@ export class UserService {
   }
 
   fetchUserDetails(): Observable<User> {
-
-    // Naiwne podejście:
-    // let token = '';
-    // this.userSubject.subscribe((user) => {
-    //   console.log('ODEBRALEM', user);
-    //   token = user.token;
-    // });
-
-    // const user = this.userSubject.getValue();
-    // user.token
-
-    const {token = ''} = this.userSubject.getValue();
-    return this.httpClient.get<User>(this.baseURL + 'user', {
-      headers: {
-        authorization: token
-      }
-    });
+    return this.httpClient.get<User>(this.baseURL + 'user');
   }
 
   setInitialUser(): void {
@@ -82,6 +66,10 @@ export class UserService {
   // getUser(): BehaviorSubject<User> {
   getUser$(): Observable<User> {
     return this.user$;
+  }
+
+  getToken$(): Observable<string> {
+    return this.user$.pipe(map(u => u.token));
   }
 
   isLoggedIn$(): Observable<boolean> {
