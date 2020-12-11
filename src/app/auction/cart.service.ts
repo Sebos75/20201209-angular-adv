@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuctionItem } from './auction-item';
 
 @Injectable({
@@ -6,15 +7,25 @@ import { AuctionItem } from './auction-item';
 })
 export class CartService {
 
-  private items: AuctionItem[] = [];
+  // []-------[A]-----[A,A]--------------------[A,A,A]
 
-  constructor() { }
+  private itemSubject = new BehaviorSubject<AuctionItem[]>([]);
+  private item$: Observable<AuctionItem[]> = this.itemSubject.asObservable();
 
   add(auction: AuctionItem): void {
-    this.items.push(auction);
+    // const auctions = this.itemSubject.getValue();
+    const auctions = [...this.itemSubject.getValue()];
+    // []-------
+
+    auctions.push(auction); // MUSISZ PAMIĘTAĆ TERAZ o rozgłoszeniu zmian;
+    // [A]
+
+    // Dopóki pamiętasz o tym, to jest ok:
+    this.itemSubject.next(auctions);
+    // []-------[A]
   }
 
-  getAll(): AuctionItem[] {
-    return this.items;
+  getAll(): Observable<AuctionItem[]> {
+    return this.item$;
   }
 }
