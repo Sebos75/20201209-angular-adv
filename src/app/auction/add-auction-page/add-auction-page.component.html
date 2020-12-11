@@ -1,1 +1,98 @@
-<p>add-auction-page works!</p>
+<section class="mt-2 row">
+  <div class="col-6">
+    <img
+      class="img-thumbnail"
+      alt="Podgląd fotografii"
+      [src]="'https://picsum.photos/id/' + imgID + '/600/600'"
+    />
+  </div>
+  <div class="col-6">
+    <form #auctionForm="ngForm" (ngSubmit)="handleFormSubmit(auctionForm)" (input)="handleCleanError()">
+      <div class="form-group">
+        <label for="auctionTitle">Nazwa aukcji</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon icon="edit"></fa-icon>
+            </span>
+          </div>
+          <input
+            #myTitle="ngModel"
+            ngModel
+            id="auctionTitle"
+            type="text"
+            name="title"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="alert alert-danger" *ngIf="myTitle.errors && myTitle.touched">
+            <div *ngIf="myTitle.errors?.required">
+                Pole jest wymagane !
+            </div>
+            <!-- {{ myTitle.errors | json }} -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="auctionPrice">Cena aukcji</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon icon="tag"></fa-icon>
+            </span>
+          </div>
+          <input
+            id="auctionPrice"
+            type="number"
+            ngModel
+            name="price"
+            required
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="img">Zdjęcie</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon icon="image"></fa-icon>
+            </span>
+          </div>
+          <input
+            id="img"
+            type="number"
+            [(ngModel)]="imgID"
+            name="imgUrl"
+            required
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="auctionDescription">Szczegółowy opis</label>
+        <div class="input-group mb-3">
+          <textarea
+            id="auctionDescription"
+            rows="5"
+            class="form-control"
+            ngModel
+            name="description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="errorMessage">
+          {{ errorMessage }}
+      </div>
+      <div class="text-right">
+        <button class="btn btn-primary" [class.disabled]="auctionForm.invalid" type="submit">
+          <i class="fa fa-gavel"></i> Dodaj aukcję
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+

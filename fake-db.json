@@ -26,6 +26,13 @@
       "price": 11000,
       "isPromoted": true,
       "imgUrl": "https://picsum.photos/id/133/200/200"
+    },
+    {
+      "title": "Laptop",
+      "price": 6253,
+      "imgUrl": "https://picsum.photos/id/6/200/200",
+      "description": "jakiś fajny",
+      "id": 5
     }
   ]
 }

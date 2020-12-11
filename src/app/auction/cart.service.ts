@@ -19,6 +19,8 @@ export class CartService {
   private itemSubject = new BehaviorSubject<AuctionItem[]>([]);
   private item$: Observable<AuctionItem[]> = this.itemSubject.asObservable();
 
+  constructor() {}
+
   add(auction: AuctionItem): void {
     // const auctions = this.itemSubject.getValue();
     const auctions = [...this.itemSubject.getValue()];
