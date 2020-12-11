@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div class="text-light">
-    <a class="btn btn-primary" routerLink="/add-auction" >
+    <a class="btn btn-primary" routerLink="/add-auction" *ngIf="isLoggedIn$ | async" >
       <fa-icon icon="plus"></fa-icon> Dodaj
     </a>
     <a class="btn btn-secondary ml-2" routerLink="/shopping-cart">

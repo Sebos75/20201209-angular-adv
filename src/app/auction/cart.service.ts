@@ -51,7 +51,7 @@ export class CartService {
     const sum = (accumulator: number, value: number): number => accumulator + value;
     const pluckPrice = (auction: AuctionItem): number => auction.price;
 
-    return this.item$.pipe(map((auctions: AuctionItem[]) => auctions.map(pluckPrice).reduce(sum)));
+    return this.item$.pipe(map((auctions: AuctionItem[]) => auctions.map(pluckPrice).reduce(sum, 0)));
     // return of(2000);
   }
 }
