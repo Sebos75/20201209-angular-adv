@@ -8,6 +8,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { PromotionsPageComponent } from './promotions-page/promotions-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
+import { CartItemComponent } from './cart-page/cart-item/cart-item.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     AuctionsPageComponent,
     CartPageComponent,
     PromotionsPageComponent,
-    AuctionCardComponent
+    AuctionCardComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuctionItem } from '../../auction-item';
 
 @Component({
   selector: 'ap-cart-item',
