@@ -24,6 +24,7 @@
       "id": 4,
       "title": "Zabytkowe wozy",
       "price": 11000,
+      "isPromoted": true,
       "imgUrl": "https://picsum.photos/id/133/200/200"
     }
   ]

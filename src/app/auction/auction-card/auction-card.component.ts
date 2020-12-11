@@ -8,6 +8,8 @@ import { CartService } from '../cart.service';
   template: `
     <div class="card" *ngIf="auction">
       <div class="card-header">{{auction.title}}</div>
+      <div class="text-center" *ngIf="promotionBanner"> TO JEST PROMOCJA </div>
+      <ng-content></ng-content>
       <img class="card-img" [src]="auction.imgUrl" [alt]="auction.title" />
       <div class="card-body">
         <p class="card-text">{{auction.description}}</p>
@@ -23,6 +25,7 @@ import { CartService } from '../cart.service';
 })
 export class AuctionCardComponent {
 
+  @Input() promotionBanner = false;
   @Input() auction!: AuctionItem;
   @Output() addToCart = new EventEmitter<AuctionItem>();
 
