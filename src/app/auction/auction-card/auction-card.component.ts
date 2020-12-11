@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { AuctionItem } from '../auction-item';
 import { CartService } from '../cart.service';
@@ -24,11 +24,10 @@ import { CartService } from '../cart.service';
 export class AuctionCardComponent {
 
   @Input() auction!: AuctionItem;
-
-  constructor(private cartService: CartService) {}
+  @Output() addToCart = new EventEmitter<AuctionItem>();
 
   handleAddToCartClick(): void {
-    this.cartService.add(this.auction);
+    this.addToCart.emit(this.auction);
   }
 
 }

@@ -10,7 +10,7 @@
         {{ auctionsLoadingError }}
       </div>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2" *ngFor="let item of auctions">
-        <ap-auction-card [auction]="item"></ap-auction-card>
+        <ap-auction-card [auction]="item" (addToCart)="handleAddToCart($event)" ></ap-auction-card>
       </div>
   </div>
 </section>

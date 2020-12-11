@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuctionItem } from '../auction-item';
+import { CartService } from '../cart.service';
 
 @Component({
   templateUrl: './auctions-page.component.html',
@@ -18,12 +19,16 @@ export class AuctionsPageComponent implements OnInit {
   auctionsLoadingError = '';
   auctions: AuctionItem[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe((data: Data) => {
       this.auctions = data.auctions;
     });
+  }
+
+  handleAddToCart(auction: AuctionItem): void {
+    this.cartService.add(auction);
   }
 
 }
