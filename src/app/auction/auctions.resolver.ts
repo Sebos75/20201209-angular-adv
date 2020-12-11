@@ -5,12 +5,11 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { NgProgressRef, NgProgress } from 'ngx-progressbar';
 import { ToastrService } from 'ngx-toastr';
 
-import { Observable, EMPTY, of } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 
-import { tap, catchError, finalize, retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 import { AuctionItem } from './auction-item';
 import { AuctionsService } from './auctions.service';
@@ -20,15 +19,12 @@ import { AuctionsService } from './auctions.service';
 })
 export class AuctionsResolver implements Resolve<AuctionItem[]> {
 
-  private progressRef: NgProgressRef;
+  // ładowanie przeniesione do interceptora "progress.interceptor"...
+  // private progressRef: NgProgressRef;
 
-  constructor(private auctionsService: AuctionsService, private toastrService: ToastrService, private progress: NgProgress) {
-    this.progressRef = progress.ref();
-  }
+  constructor(private auctionsService: AuctionsService, private toastrService: ToastrService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AuctionItem[]> {
-    // Wyświetl ładowanie
-    this.progressRef.start();
     return this.auctionsService.getAll().pipe(
       retry(3),
       catchError((err: HttpErrorResponse) => {
@@ -41,10 +37,6 @@ export class AuctionsResolver implements Resolve<AuctionItem[]> {
         // ]);
         this.toastrService.error(err.message);
         return EMPTY;
-      }),
-      finalize(() => {
-        // Tu zrobimy schowanie ładowania
-        this.progressRef.complete();
       })
     );
   }
