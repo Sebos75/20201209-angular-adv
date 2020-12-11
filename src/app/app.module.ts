@@ -19,7 +19,6 @@ import {
   faEnvelope, faSignInAlt, faKey
 } from '@fortawesome/free-solid-svg-icons';
 // import { HighlightDirective } from './advice/highlight.directive';
-import { AdviceModule } from './advice/advice.module';
 import { AuctionModule } from './auction/auction.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
@@ -38,7 +37,6 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    AdviceModule,
     AuctionModule,
     SharedModule,
     HttpClientModule,
