@@ -30,7 +30,7 @@
             <div *ngIf="myTitle.errors?.required">
                 Pole jest wymagane !
             </div>
-            <!-- {{ myTitle.errors | json }} -->
+            {{ myTitle.errors | json }}
         </div>
       </div>
 
@@ -38,11 +38,12 @@
         <label for="auctionPrice">Cena aukcji</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">
+            <span (click)="pomidor.focus()" class="input-group-text">
               <fa-icon icon="tag"></fa-icon>
             </span>
           </div>
           <input
+            #pomidor
             id="auctionPrice"
             type="number"
             ngModel

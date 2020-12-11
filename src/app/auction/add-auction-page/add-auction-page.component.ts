@@ -6,14 +6,14 @@ import { AuctionsService } from '../auctions.service';
 @Component({
   templateUrl: './add-auction-page.component.html',
   styles: [`
-    .ng-touched.ng-invalid {
+   .ng-touched.ng-invalid {
       border-color: darkred;
     }
   `]
 })
 export class AddAuctionPageComponent {
 
-  imgID = 1;
+  imgID = 100;
   errorMessage = '';
 
   constructor(private auctionsService: AuctionsService) { }

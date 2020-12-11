@@ -33,6 +33,13 @@
       "imgUrl": "https://picsum.photos/id/6/200/200",
       "description": "jakiś fajny",
       "id": 5
+    },
+    {
+      "title": "hello",
+      "price": 234234,
+      "imgUrl": "https://picsum.photos/id/33/200/200",
+      "description": "trawa",
+      "id": 6
     }
   ]
 }
