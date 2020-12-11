@@ -3,11 +3,11 @@
     <img
       class="img-thumbnail"
       alt="Podgląd fotografii"
-      [src]="'https://picsum.photos/id/' + imgID + '/600/600'"
+      [src]="'https://picsum.photos/id/' + auctionForm.value.imgUrl + '/600/600'"
     />
   </div>
   <div class="col-6">
-    <form #auctionForm="ngForm" (ngSubmit)="handleFormSubmit(auctionForm)" (input)="handleCleanError()">
+    <form [formGroup]="auctionForm" (ngSubmit)="handleFormSubmit()" (input)="handleCleanError()">
       <div class="form-group">
         <label for="auctionTitle">Nazwa aukcji</label>
         <div class="input-group mb-3">
@@ -17,11 +17,10 @@
             </span>
           </div>
           <input
-            #myTitle="ngModel"
-            ngModel
             id="auctionTitle"
             type="text"
             name="title"
+            formControlName="title"
             required
             class="form-control"
           />
@@ -46,12 +45,15 @@
             #pomidor
             id="auctionPrice"
             type="number"
-            ngModel
+            [formControl]="myPrice"
             name="price"
             required
             class="form-control"
           />
         </div>
+      </div>
+      <div>
+        {{ myPrice.errors | json }}
       </div>
 
       <div class="form-group">
@@ -65,9 +67,10 @@
           <input
             id="img"
             type="number"
-            [(ngModel)]="imgID"
+            formControlName="imgUrl"
             name="imgUrl"
             required
+            min="1"
             class="form-control"
           />
         </div>
@@ -80,11 +83,26 @@
             id="auctionDescription"
             rows="5"
             class="form-control"
-            ngModel
+            formControlName="description"
             name="description"
           ></textarea>
         </div>
       </div>
+
+      <div>
+        <button class="btn btn-outline-secondary" (click)="handleAddTag()" type="button">Dodaj tag</button>
+      </div>
+      <div class="form-group" *ngFor="let tag of fromTags.controls">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <fa-icon icon="tag"></fa-icon>
+            </span>
+          </div>
+          <input type="text" class="form-control" [formControl]="tag"/>
+        </div>
+      </div>
+
       <div class="alert alert-danger" *ngIf="errorMessage">
           {{ errorMessage }}
       </div>

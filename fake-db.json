@@ -40,6 +40,16 @@
       "imgUrl": "https://picsum.photos/id/33/200/200",
       "description": "trawa",
       "id": 6
+    },
+    {
+      "title": "hello",
+      "price": 123,
+      "imgUrl": "https://picsum.photos/id/3/200/200",
+      "description": "",
+      "tags": [
+        "ok"
+      ],
+      "id": 7
     }
   ]
 }

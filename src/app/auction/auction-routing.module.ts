@@ -8,7 +8,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { PromotionsPageComponent } from './promotions-page/promotions-page.component';
 
 const routes: Routes = [
-  {path: 'add-auction', component: AddAuctionPageComponent, canActivate: [/*AuthGuard*/]},
+  {path: 'add-auction', component: AddAuctionPageComponent, canActivate: [AuthGuard]},
   {path: 'shopping-cart', component: CartPageComponent},
   {
     path: 'auctions',
