@@ -14,7 +14,8 @@
       <fa-icon icon="plus"></fa-icon> Dodaj
     </a>
     <a class="btn btn-secondary ml-2" routerLink="/shopping-cart">
-      <fa-icon icon="shopping-basket"></fa-icon> Koszyk
+      <!-- <fa-icon icon="shopping-basket"></fa-icon> Koszyk ({{ {name: 'michal'}  | json | uppercase }}) -->
+      <fa-icon icon="shopping-basket"></fa-icon> Koszyk ({{ cs.countAll() | async }})
     </a>
     <a class="btn btn-secondary ml-2" routerLink="/login" *ngIf="!(isLoggedIn$ | async)">
       <fa-icon icon="sign-in-alt"></fa-icon> Zaloguj

@@ -7,4 +7,7 @@
       <ap-cart-item *ngFor="let item of item$ | async" [item]="item" ></ap-cart-item>
     </ul>
   </div>
+  <div>
+    Suma koszyka: {{ value$ | async}}
+  </div>
 </section>

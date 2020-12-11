@@ -9,11 +9,13 @@ import { CartService } from '../cart.service';
 export class CartPageComponent implements OnInit {
 
   item$: Observable<AuctionItem[]> = of([]);
+  value$: Observable<number> = of(0);
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.item$ = this.cartService.getAll();
+    this.value$ = this.cartService.getCartValue();
   }
 
 }

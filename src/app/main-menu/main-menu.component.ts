@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { CartService } from '../auction/cart.service';
 import { UserService } from '../auth/user.service';
 
 import { MenuItem } from './menu-item';
@@ -22,7 +23,7 @@ export class MainMenuComponent implements OnInit {
   // loginSub!: Subscription; // async pipe załatwia sprawę
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, public cs: CartService){}
 
   ngOnInit(): void {
     // this.loginSub = this.userService.isLoggedIn$().subscribe((loggedIn: boolean) => {
