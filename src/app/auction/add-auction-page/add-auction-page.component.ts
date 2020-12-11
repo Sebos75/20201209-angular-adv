@@ -35,10 +35,10 @@ export class AddAuctionPageComponent {
     // Wrzuć aukcje na serwer:
     // auction
 
-    this.auctionsService.add(auction).subscribe((auction: AuctionItem) => {
+    this.auctionsService.add(auction).subscribe((/*auctionFormServer: AuctionItem*/) => {
       form.resetForm();
       this.imgID = 1;
-      // console.log(auction);
+      // console.log(auctionFormServer);
     });
 
     // Jeśli ok, to uruchom:
