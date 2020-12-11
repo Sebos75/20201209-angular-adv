@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -7,6 +7,8 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { POMIDOR } from './tokens';
+
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AuthInterceptor } from './auth.interceptor';
     SharedModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: POMIDOR, useValue: 'Hello pomidor'},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: INNA KLASA, multi: true },
   ]
 })
 export class AuthModule { }

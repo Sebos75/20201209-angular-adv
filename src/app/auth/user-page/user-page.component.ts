@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { POMIDOR } from '../tokens';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -31,7 +32,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   user = {name: 'Example', lastName: 'Placeholder'};
   private unsubSubject = new Subject<void>();
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, @Inject(POMIDOR) private dec: string) { }
 
   ngOnDestroy(): void {
     // HACK jak mamy dużo subskrypcji i każdą z nich chcemy natychmiast unsubować !
@@ -41,6 +42,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('Witaj', this.dec);
     this.userService.getUser$().pipe(takeUntil(this.unsubSubject)).subscribe((user: User) => {
         // console.log(user);
         this.user = user;
